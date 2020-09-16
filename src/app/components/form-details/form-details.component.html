@@ -1,0 +1,8 @@
+<hot-table [data]="data"
+           [columns]="columns"
+           [colHeaders]="colHeaders"
+           [colWidths]="colHeaders"
+           [options]="options"
+           (hotInstanceCreated)="init($event)"
+           (HANDSONTABLE_EVENT)="eventHandler">
+</hot-table>
