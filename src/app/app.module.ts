@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 //import { Observable } from 'rxjs/Observable'
-import { HotTableModule } from 'ng2-handsontable';
+import { HotTableModule } from '@handsontable/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormComponent } from './components/form/form.component';
@@ -11,6 +12,7 @@ import { FormHeadersComponent } from './components/form-headers/form-headers.com
 import { FormFooterComponent } from './components/form-footer/form-footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from "angular-bootstrap-md";
+import { HttpClientModule } from "@angular/common/http";
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -51,11 +53,13 @@ import {
     MainComponent,
     FormDetailsComponent,
     FormHeadersComponent,
-    FormFooterComponent
+    FormFooterComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
     BrowserModule,
+    FormsModule, 
+    ReactiveFormsModule ,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
@@ -90,7 +94,8 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     //Observable,
-    HotTableModule
+    HotTableModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

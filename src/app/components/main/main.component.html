@@ -1,4 +1,4 @@
-<mat-toolbar>
+<!-- <mat-toolbar>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
@@ -10,16 +10,33 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon>share</mat-icon>
     </button>
-</mat-toolbar>
+</mat-toolbar> -->
 
-<div class="text-center">
-    <mat-form-field style="direction: rtl;">
-        <mat-label> בחר טופס</mat-label>
-        <mat-select matNativeControl>
-            <mat-option>www</mat-option>
-        </mat-select>
-    </mat-form-field>
+<div  class="text-center not-print">
+
+      <mat-form-field class="form-field">
+        <input matInput placeholder="Filter" aria-label="Filter" [matAutocomplete]="auto" formControlName="filter"
+          matTooltip="Filter" matTooltipPosition="after" #txtVal (input)="applyFilter(txtVal.value)" />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option class="direction" *ngFor="let element of  " value="{{ element.FILE_NO }}"
+            (click)="getCertificateForm(element)" >
+            <span class="text-default"> File No.: {{ element.FILE_NO }}</span> |
+            <span class="text-danger">MBL Number: {{ element.MBL_NUMBER }} </span> |
+            <span class="text-info">Certificate No.: {{ element.2 }}</span> |
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 </div>
-
-<app-form>
+<app-form [data]="data">
 </app-form>
+<div class="not-print example-button-row">
+    <button mat-button>
+        <mat-icon>email</mat-icon>שלח במייל
+    </button>
+    <button mat-button (click)="print()">
+        <mat-icon>print</mat-icon>הדפס
+    </button>
+    <button mat-button>
+        <mat-icon>save</mat-icon>שמור
+    </button>
+</div>

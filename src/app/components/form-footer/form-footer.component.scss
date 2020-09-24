@@ -1,0 +1,31 @@
+p{
+    margin-bottom: 1px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    height: 18%;
+}
+
+ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+  .section{
+      padding: 5px;
+      border:1px solid #ced4da;
+  }
+  .section:first-child{
+      border-right: none;
+  }
+  label{
+  
+    font-size: 0.800rem !important;
+ }
+ mat-checkbox{
+  
+    font-size:  0.775rem!important;
+ }
+
+ hr{
+         margin-top: 0rem !important; 
+    margin-bottom: 0rem !important;
+ }

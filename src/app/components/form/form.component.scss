@@ -1,0 +1,40 @@
+mat-card {
+    width: calc(100% - 200px);
+  }
+  h4{
+    font-weight: 500
+  }
+  .primary{
+    margin-top: 5px;
+    margin-left: 100px;
+  }
+//   @media print {
+//   app-form-footer{
+//     position: fixed; bottom: 0;
+//   }
+// .header{
+//     position: fixed; top: 0;height: 700px;
+// }
+// // app-form-details{
+// //     
+// // }
+// table { page-break-inside:auto }
+//    tr    { page-break-inside:avoid; page-break-after:auto }
+// }
+
+// .header, .header-space
+// //,.footer, .footer-space
+//  { height: 550px; }
+// .header { position: fixed; top: 0; }
+// .footer { position: fixed; bottom: 0; }
+
+
+
+// .invoice {
+//     page-break-after: always;
+//   }
+  
+//   .invoice:last-child {
+//     page-break-after: avoid;
+//   }
+  

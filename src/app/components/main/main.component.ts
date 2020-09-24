@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private formService:FormService,private formbulider:FormBuilder) { }
+  data:any={};
+  searchForm:any={};
+  
   ngOnInit() {
+    this.searchForm = this.formbulider.group({
+      fileNo: [""],
+      mblNumber: [""],
+      certificateNo: [""],
+  });
+}
+  print(){
+    window.print();
   }
-
+  onFormSubmit(searchForm){
+    this.formService.getCertificateForm(searchForm).subscribe(data => {
+      this.data = data
+    });
+  }
 }

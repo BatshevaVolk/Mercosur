@@ -1,8 +1,26 @@
-<hot-table [data]="data"
-           [columns]="columns"
-           [colHeaders]="colHeaders"
-           [colWidths]="colHeaders"
-           [options]="options"
-           (hotInstanceCreated)="init($event)"
-           (HANDSONTABLE_EVENT)="eventHandler">
-</hot-table>
+
+<div class="text-center description-label"><label >9.Description of goods</label></div>
+<div class="form-details">
+<hot-table  class="hotTable"
+licenseKey="non-commercial-and-evaluation"
+    [data]="data"
+[colHeaders]= "true"
+[rowHeaders]= "true"
+[nestedHeaders]="[
+['Tariff item number', 'Origin criteria',{label: 'Description of the goods', colspan: 2}, 'Gross, weight or other measure']]"
+ 
+[columnSorting]= "true"
+[contextMenu]= "[
+  'row_above', 'row_below', 'remove_row','copy','cut']"
+  [columns]= "[
+    {data: 'tariffItemNumber'},
+    {data: 'originCriteria'},
+    {data: 'description.a'},
+    {data: 'description.b'},
+    {data: 'measure'}
+  ]"
+  [height]="207"
+  [width]="1201"
+   [colWidths]="[200,200,200,200,300]"
+  ></hot-table>
+</div>

@@ -1,1 +1,77 @@
-<p>form-headers works!</p>
+<form [formGroup]="headersForm">
+
+  <div class="form-row">
+    <div class="col-md-6">
+      <label>1.Exporter(name, address, country)</label>
+      <div formGroupName="exporter" class="section" >
+        <input mdbInput type="text" class="form-control-sm" formControlName="name" style="border: none;margin-bottom: 3px;"/>
+        <input mdbInput type="text" class="form-control-sm" formControlName="address" style="border: none;margin-bottom: 3px;"/>
+        <input mdbInput type="text" class="form-control-sm" formControlName="country" style="border: none;"/>
+      </div>
+    </div>
+    <div class="col-md-6"> 
+      <label>2.Certificate no.</label>
+      <div class="md-form form-group my-0">
+        <textarea mdbInput type="text" rows="4" class="form-control" formControlName="certificateNo"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6" >
+      <label>3.Importer (name, full address,country)</label>
+      <div formGroupName="importer" class="section">
+        <input mdbInput type="text" class="form-control-sm" formControlName="name" style="border: none;;margin-bottom: 3px;"/>
+        <input mdbInput type="text" class="form-control-sm" formControlName="address" style="border: none;;margin-bottom: 3px;"/>
+        <input mdbInput type="text" class="form-control-sm" formControlName="country" style="border: none;"/>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>4.Country of Origin</label>
+      <div class="md-form form-group my-0">
+        <textarea mdbInput rows="4" type="text" class="form-control" formControlName="countryOfOrigin" ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6">
+      <div>
+        <label>5.Port of shipment and Transport Details (Optional)</label>
+        <div class="form-row" formGroupName="portAndTransportDetails">
+          <div class="col-md-6">
+            <div class="md-form form-group my-0">
+            <input mdbInput type="text" class="form-control" formControlName="port"/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="md-form form-group my-0">
+            <input mdbInput type="text" class="form-control" formControlName="transport" />
+            <label >B/L</label>
+            </div>
+          </div> 
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+       <label>6.Country of destination</label>
+      <div class="md-form form-group my-0">
+        <textarea mdbInput type="text" rows="2" class="form-control" formControlName="countryOfDestination"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-6">
+       <label>7.Observations</label>
+      <div class="md-form form-group my-0">
+        <textarea mdbInput type="text" rows="2" class="form-control" formControlName="observations" style="padding-bottom: 0px !important;"></textarea>
+      </div>
+    </div>
+    <div class="col-md-6">
+       <label for="commercialInvoices">8.Commercial invoices</label>
+      <div class="md-form form-group my-0">
+        <textarea rows="2" mdbInput type="text" class="form-control" formControlName="commercialInvoices" style="padding-bottom: 0px !important;"></textarea>
+      </div>
+    </div>
+  </div>
+</form>
