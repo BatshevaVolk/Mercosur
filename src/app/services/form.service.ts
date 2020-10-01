@@ -24,4 +24,26 @@ export class FormService {
   // };
   return this.appService.resolve('getCertificateForm',this.http.post<any>(this.url + "/form/certificateForm",searchForm));
    }
+
+   saveCertificateForm(certificateForm): Observable<any> {
+    //   //var token = "Bearer " + localStorage.getItem("token");
+    //   const httpOptions = {
+    //      headers: new HttpHeaders({
+    //        "Content-Type": "application/json",
+    // //       //Authorization: token,
+    //     }),
+    // };
+    return this.appService.resolve('saveCertificateForm',this.http.post<any>(this.url + "/form/saveCertificateForm",certificateForm));
+     }
+
+   searchAvailableCertificateForm(): Observable<any> {
+    //   //var token = "Bearer " + localStorage.getItem("token");
+    //   const httpOptions = {
+    //      headers: new HttpHeaders({
+    //        "Content-Type": "application/json",
+    // //       //Authorization: token,
+    //     }),
+    // };
+    return this.appService.resolve('searchAvailableCertificateForm',this.http.get<any>(this.url + "/form/searchAvailableCertificateForm"));
+     }
 }

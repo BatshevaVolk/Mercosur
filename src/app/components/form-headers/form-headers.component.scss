@@ -1,20 +1,50 @@
 .section{
     border:1px solid #ced4da;
 }
+.mat-form-field{
+    width: 100% !important;
+    //     ::ng-deep{
+    //         .mat-form-field-appearance-legacy .mat-form-field-infix {
+    //             padding: 0px!important;
+    // }
+    // }
+}
 
 .form-control-sm{
     width: 100% !important;
    font-size: 0.700rem !important;
   
 }
+.mat-form-field-appearance-legacy{
+   ::ng-deep{
+           .mat-form-field-wrapper {
+            padding-bottom:0.4rem !important;
+           }
+            .mat-form-field-infix{
+     //  padding-bottom: 0%!important;
+        border-top:none;
+        padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
+      }
+   }
+  }
+  .mat-form-field {
+          line-height:0;
+  }
+
 .form-control{
    font-size: 0.7rem !important;
 }
 textarea{
+    border:1px solid #ced4da;
     padding-left: 3px !important;
-    padding-bottom: 11px !important;
+    line-height: 1.125;
+ //   padding-bottom: 11px !important;
 }
 label{
-  
    font-size: 0.800rem !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper{
+    padding-bottom: 0px!important;
 }

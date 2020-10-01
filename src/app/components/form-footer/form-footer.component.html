@@ -1,45 +1,41 @@
 <h5 class="text-center">ORIGIN CERTIFICATION</h5>
 <form class="form-row" [formGroup]="footerForm">
-<div class="col-md-6 section">
-  <div style="height: 95px;"> 
-    <label for="declarationBy">10.Declaration by:</label>
-    <ul>
-      <li *ngFor="let element of data.declarationBy">
-        <mat-checkbox 
-        [checked]="element.value"
-        name={{element.name}} >
-        {{element.displayName }}
-      </mat-checkbox>
-      </li>
-    </ul>
-   
-</div>
-  <p>
-    The undersigned hereby declares that he has read the instructions for filling out this Certificate, and that the goods comply with the origin requirements specified in the Agreement.
-</p>
-<div><label>Date:</label></div>
-<div class="text-center"><label>Stamp and signature</label></div>
-<hr>
-</div>
-<div class="col-md-6 section">
-  <div style="height: 95px;">
- <div><label>11.Certification by the Issuing Authority:</label></div>
-  <div class="md-form form-group my-0">
-    <input
-      mdbInput
-      type="text"
-      class="form-control-sm"
-      formControlName="certificationAuthority"
-      
-    />
-    <label for="certificationAuthority">Name of the issuing authority</label>
+  <div class="col-md-6 section">
+    <div style="height: 95px;">
+      <label for="declarationBy">10.Declaration by:</label>
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+        formControlName="isProducer">
+        <mat-radio-button class="example-radio-button" value="producer">
+          The Producer
+        </mat-radio-button>
+        <mat-radio-button class="example-radio-button" value="exporter">
+          The Exporter (if not the producer)
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <p>
+      The undersigned hereby declares that he has read the instructions for filling out this Certificate, and that the
+      goods comply with the origin requirements specified in the Agreement.
+    </p>
+    <div><label>Date:</label></div>
+    <div class="text-center"><label>Stamp and signature</label></div>
+    <hr>
   </div>
-</div>
-  <p>
-    We hereby certify the authenticity of this certificate and that it was issued in accordance with the provisions of the Agreement.
-</p>
-<div><label>Date:</label></div>
-<div class="text-center"><label>Stamp and signature</label></div>
-<hr>
-</div>
+  <div class="col-md-6 section">
+    <div style="height: 95px;">
+      <div><label>11.Certification by the Issuing Authority:</label></div>
+      <div class="md-form form-group my-0">
+        <input mdbInput type="text" class="form-control-sm" formControlName="certificationAuthority" />
+        <label for="certificationAuthority">Name of the issuing authority</label>
+      </div>
+    </div>
+    <p>
+      We hereby certify the authenticity of this certificate and that it was issued in accordance with the provisions of
+      the Agreement.
+    </p>
+    <div><label>Date:</label></div>
+    <div class="text-center"><label>Stamp and signature</label></div>
+    <hr>
+  </div>
+ 
 </form>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ɵɵstaticViewQuery } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -13,6 +13,7 @@ export class FormFooterComponent implements OnInit {
   @Input() set data(value) {
     this._data = value;
     if (value != undefined) {
+      value.isProducer = value.isProducer === true ? "producer" : "exporter";
       this.footerForm.patchValue(value);
     }
   }
@@ -26,8 +27,18 @@ export class FormFooterComponent implements OnInit {
 
   ngOnInit() {
     this.footerForm = new FormGroup({
-      certificationAuthority: new FormControl("",Validators.required),
+      certificationAuthority: new FormControl("", Validators.required),
+      isProducer: new FormControl("", Validators.required),
     });
+  }
+  save() {
+  //  if (this.footerForm.valid) {
+      return {
+        certificationAuthority: this.footerForm.value.certificationAuthority,
+        isProducer: this.footerForm.value.isProducer === "producer" ? true : false
+      }
+   // }
+   // return undefined;
   }
 
 }

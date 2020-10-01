@@ -19,7 +19,7 @@ export class AppService {
     return result.pipe(
       map((res: any) => res),
       tap(res => {
-        console.debug(`${name} Success`, res);
+       // console.debug(`${name} Success`, res);
       }),
       catchError(err=>{return this.handleError(err)})
     );

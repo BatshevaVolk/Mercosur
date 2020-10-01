@@ -12,20 +12,25 @@
     </button>
 </mat-toolbar> -->
 
-<div  class="text-center not-print">
-
-      <mat-form-field class="form-field">
-        <input matInput placeholder="Filter" aria-label="Filter" [matAutocomplete]="auto" formControlName="filter"
-          matTooltip="Filter" matTooltipPosition="after" #txtVal (input)="applyFilter(txtVal.value)" />
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option class="direction" *ngFor="let element of  " value="{{ element.FILE_NO }}"
-            (click)="getCertificateForm(element)" >
-            <span class="text-default"> File No.: {{ element.FILE_NO }}</span> |
-            <span class="text-danger">MBL Number: {{ element.MBL_NUMBER }} </span> |
-            <span class="text-info">Certificate No.: {{ element.2 }}</span> |
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+<div class="text-center not-print">
+  <mat-form-field class="form-field">
+    <input matInput placeholder="Filter" aria-label="State" [matAutocomplete]="auto" [formControl]="searchForm"  #txtVal (input)="applyFilter(txtVal.value)">
+    <mat-autocomplete #auto="matAutocomplete"  >
+      <!-- <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+      <ng-container *ngIf="!isLoading"> -->
+        <mat-option *ngFor="let element of filteredForms" [value]="element.mblNumber"
+          (click)="getCertificateForm(element)" >
+          <span class="text-default">File No.: {{ element.fileNo }}</span> |
+          <span class="text-danger">MBL Number: {{ element.mblNumber }} </span> |
+          <span class="text-info">Certificate No.: {{ element.certificateNo }}</span> 
+        </mat-option>
+      <!-- </ng-container> -->
+    </mat-autocomplete>
+  </mat-form-field>
+  <br>
+<ng-container *ngIf="errorMsg">
+  {{errorMsg}}
+</ng-container>
 </div>
 <app-form [data]="data">
 </app-form>
@@ -36,7 +41,7 @@
     <button mat-button (click)="print()">
         <mat-icon>print</mat-icon>הדפס
     </button>
-    <button mat-button>
+    <button mat-button (click)="save()" [disabled]="showProgress">
         <mat-icon>save</mat-icon>שמור
     </button>
 </div>
