@@ -27,6 +27,7 @@ export class MainComponent implements OnInit {
   errorMsg: string;
 
   searchAvailableCertificateForm() {
+    this.searchForm = new FormControl();
     this.formService.searchAvailableCertificateForm().subscribe(data => {
       if (data == undefined) {
         this.errorMsg = "";
