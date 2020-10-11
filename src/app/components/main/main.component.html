@@ -18,7 +18,7 @@
     <mat-autocomplete #auto="matAutocomplete"  >
       <!-- <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
       <ng-container *ngIf="!isLoading"> -->
-        <mat-option *ngFor="let element of filteredForms" [value]="element.mblNumber"
+        <mat-option *ngFor="let element of filteredForms" [value]="element.fileNo"
           (click)="getCertificateForm(element)" >
           <span class="text-default">File No.: {{ element.fileNo }}</span> |
           <span class="text-danger">MBL Number: {{ element.mblNumber }} </span> |
@@ -35,13 +35,13 @@
 <app-form [data]="data">
 </app-form>
 <div class="not-print example-button-row">
-    <button mat-button>
+    <button mat-raised-button color="primary">
         <mat-icon>email</mat-icon>שלח במייל
     </button>
-    <button mat-button (click)="print()">
+    <button  mat-raised-button color="primary" (click)="print()">
         <mat-icon>print</mat-icon>הדפס
     </button>
-    <button mat-button (click)="save()" [disabled]="showProgress">
+    <button mat-raised-button color="primary" class="save-button" (click)="save(true)" [disabled]="showProgress">
         <mat-icon>save</mat-icon>שמור
     </button>
 </div>

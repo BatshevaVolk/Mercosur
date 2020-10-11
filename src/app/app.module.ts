@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { HotTableModule } from '@handsontable/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ConfirmSnackBarComponent } from './components/confirm-snack-bar/confirm-snack-bar.component';
 import { FormComponent } from './components/form/form.component';
 import { MainComponent } from './components/main/main.component';
 import { FormDetailsComponent } from './components/form-details/form-details.component';
@@ -54,6 +55,7 @@ import {
     FormDetailsComponent,
     FormHeadersComponent,
     FormFooterComponent,
+    ConfirmSnackBarComponent
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
@@ -98,6 +100,9 @@ import {
     HttpClientModule 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ConfirmSnackBarComponent
+  ],
 })
 export class AppModule { }

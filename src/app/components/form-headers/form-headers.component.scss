@@ -1,5 +1,11 @@
+label{
+    color: red;
+}
 .section{
     border:1px solid #ced4da;
+}
+ input{
+    color: black !important;
 }
 .mat-form-field{
     width: 100% !important;
@@ -15,6 +21,7 @@
    font-size: 0.700rem !important;
   
 }
+
 .mat-form-field-appearance-legacy{
    ::ng-deep{
            .mat-form-field-wrapper {
@@ -25,6 +32,9 @@
         border-top:none;
         padding-top: 0.4rem !important;
     padding-bottom: 0.4rem !important;
+      }
+      .mat-form-field-underline {
+          background:none !important;
       }
    }
   }

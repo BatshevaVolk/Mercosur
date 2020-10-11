@@ -3,7 +3,7 @@
   }
   button{
     margin: 5px;
-    background-color: gray;
+    
     font-weight: bold;
 }
 .example-button-row{
@@ -12,4 +12,8 @@
 }
 .mat-form-field{
   width: 30%;
+}
+
+.save-button{
+  background-color:#4CAF50 !important
 }

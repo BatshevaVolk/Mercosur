@@ -19,6 +19,9 @@ export class FormComponent implements OnInit {
 
   }
   public save() {
+    if(this.data.fileNo ===''){
+      return undefined;
+    }
     let headerData = this.header.save()
     let detailsData = this.details.save()
     let footerData = this.footer.save()

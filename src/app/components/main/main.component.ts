@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 
 import { MatAutocomplete, MatSnackBar } from '@angular/material';
 import { FormComponent } from '../form/form.component';
+import { ConfirmSnackBarComponent } from '../confirm-snack-bar/confirm-snack-bar.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -100,6 +101,7 @@ export class MainComponent implements OnInit {
     }
   }
   print() {
+    this.save(false);
     window.print();
   }
   // displayFn(element) {
@@ -107,25 +109,36 @@ export class MainComponent implements OnInit {
   //   if (element == undefined) return '';
   //   return `File No.: ${element.fileNo} | MBL Number: ${element.mblNumber}`;
   // }
-  save() {
+  save(displayPopUp) {
+    let transferCallback = (): void => {
+      this.formService.clear().subscribe(result => {
+      this.data =result
+    });
+  }
     this.showProgress = true;
     let certificateForm = this.form.save();
     if (certificateForm != undefined) {
       this.formService.saveCertificateForm(certificateForm).subscribe(result => {
         this.showProgress = false;
-        if (result > 0) {
-          this._snackBar.open("הנתונים נשמרו בהצלחה", "שמירת טופס", {
-            duration: 2000,
-          });
-          this.data.id = result;
-
-          // this.searchAvailableCertificateForm();
+          if (result > 0) {
+            this.data.id = result;
+            this.searchAvailableCertificateForm();
+          }  
+          let saveStatus="";
+          if (displayPopUp) {
+            if (result > 0){
+            saveStatus=" הנתונים נשמרו בהצלחה"
+            }
+            else{
+              saveStatus=" שגיאה,נא נסה שנית"
+            }
         }
-        else {
-          this._snackBar.open("נסה שנית", "שגיאה", {
-            duration: 2000,
-          });
-        }
+        this._snackBar.openFromComponent(ConfirmSnackBarComponent, {
+          data:`? ${saveStatus} האם לנקות את הטופס` ,
+    
+        }).onAction().subscribe(() => {
+          transferCallback();
+        });
       });
     }
     else {

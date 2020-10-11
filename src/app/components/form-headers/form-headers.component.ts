@@ -27,62 +27,70 @@ export class FormHeadersComponent implements OnInit {
     }
     return {};
   }
-  constructor(private formbulider: FormBuilder) { }
-  toString(orgDetails) {
-    let newLine = "\n";
-    return `${orgDetails.name}${newLine}${orgDetails.address}${newLine}${orgDetails.country}`
-  }
+  constructor() { }
+  // toString(orgDetails) {
+  //   let newLine = "\n";
+  //   return `${orgDetails.name}${newLine}${orgDetails.address}${newLine}${orgDetails.country}`
+  // }
 
   ngOnInit() {
     //let headers = [];
     this.headersForm = new FormGroup({
       exporter: new FormGroup({
-        name: new FormControl("", Validators.required),
-        address: new FormControl("", Validators.required),
-        country: new FormControl("", Validators.required)
+        a: new FormControl("", /*Validators.required*/),
+        b: new FormControl("", /*Validators.required*/),
+        c: new FormControl("", /*Validators.required*/),
+        d: new FormControl("", /*Validators.required*/),
+        e: new FormControl("", /*Validators.required*/)
       }),
       importer: new FormGroup({
-        name: new FormControl("", Validators.required),
-        address: new FormControl("", Validators.required),
-        country: new FormControl("", Validators.required)
+        a: new FormControl("", /*Validators.required*/),
+        b: new FormControl("", /*Validators.required*/),
+        c: new FormControl("", /*Validators.required*/),
+        d: new FormControl("", /*Validators.required*/),
+        e: new FormControl("", /*Validators.required*/)
       }),
-      commercialInvoices: new FormControl("", Validators.required),
+      commercialInvoices: new FormControl("",  /*Validators.required*/),
       observations: new FormControl(""),
-      countryOfDestination: new FormControl("", Validators.required),
+      countryOfDestination: new FormControl("",  /*Validators.required*/),
       portAndTransportDetails: new FormGroup({
-        port: new FormControl("", Validators.required),
-        transport: new FormControl("", Validators.required),
+        port: new FormControl("",  /*Validators.required*/),
+        transport: new FormControl("",  /*Validators.required*/),
       }),
-      countryOfOrigin: new FormControl("", Validators.required),
-      certificateNo: new FormControl("", Validators.required),
+      countryOfOrigin: new FormControl("",  /*Validators.required*/),
+      certificateNo: new FormControl("", /* Validators.required*/),
     });
   }
   save() {
-    this.headersForm.markAllAsTouched();
-    if (this.headersForm.valid) {
-      return {
-        exporter: {
-          name: this.headersForm.value.exporter.name,
-          address: this.headersForm.value.exporter.address,
-          country: this.headersForm.value.exporter.country,
-        },
-        certificateNo: this.headersForm.value.certificateNo,
-        importer: {
-          name: this.headersForm.value.importer.name,
-          address: this.headersForm.value.importer.address,
-          country: this.headersForm.value.importer.country
-        },
-        countryOfOrigin: this.headersForm.value.countryOfOrigin,
-        portAndTransportDetails: {
-          port: this.headersForm.value.portAndTransportDetails.port,
-          transport: this.headersForm.value.portAndTransportDetails.transport
-        },
-        countryOfDestination: this.headersForm.value.countryOfDestination,
-        observations: this.headersForm.value.observations,
-        commercialInvoices: this.headersForm.value.commercialInvoices,
-      }
-
+    // this.headersForm.markAllAsTouched();
+    //if (this.headersForm.valid) {
+    return {
+      exporter: {
+        a: this.headersForm.value.exporter.a.trim(),
+        b: this.headersForm.value.exporter.b.trim(),
+        c: this.headersForm.value.exporter.c.trim(),
+        d: this.headersForm.value.exporter.d.trim(),
+        e: this.headersForm.value.exporter.e.trim()
+      },
+      certificateNo: this.headersForm.value.certificateNo,
+      importer: {
+        a: this.headersForm.value.importer.a.trim(),
+        b: this.headersForm.value.importer.b.trim(),
+        c: this.headersForm.value.importer.c.trim(),
+        d: this.headersForm.value.importer.d.trim(),
+        e: this.headersForm.value.importer.e.trim()
+      },
+      countryOfOrigin: this.headersForm.value.countryOfOrigin,
+      portAndTransportDetails: {
+        port: this.headersForm.value.portAndTransportDetails.port,
+        transport: this.headersForm.value.portAndTransportDetails.transport
+      },
+      countryOfDestination: this.headersForm.value.countryOfDestination,
+      observations: this.headersForm.value.observations,
+      commercialInvoices: this.headersForm.value.commercialInvoices,
     }
-    return undefined;
+
+    // }
+    //  return undefined;
   }
 }

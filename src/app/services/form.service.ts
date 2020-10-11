@@ -35,7 +35,16 @@ export class FormService {
     // };
     return this.appService.resolve('saveCertificateForm',this.http.post<any>(this.url + "/form/saveCertificateForm",certificateForm));
      }
-
+     clear(): Observable<any> {
+      //   //var token = "Bearer " + localStorage.getItem("token");
+      //   const httpOptions = {
+      //      headers: new HttpHeaders({
+      //        "Content-Type": "application/json",
+      // //       //Authorization: token,
+      //     }),
+      // };
+      return this.appService.resolve('clear',this.http.get<any>(this.url + "/form/clear"));
+       }
    searchAvailableCertificateForm(): Observable<any> {
     //   //var token = "Bearer " + localStorage.getItem("token");
     //   const httpOptions = {
