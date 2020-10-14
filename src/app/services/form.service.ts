@@ -35,6 +35,17 @@ export class FormService {
     // };
     return this.appService.resolve('saveCertificateForm',this.http.post<any>(this.url + "/form/saveCertificateForm",certificateForm));
      }
+     
+     public getTemplateForPDF(certificateForm): any {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          responseType: "blob",
+        }),
+      };
+      var routePath =this.url + "/form/getTemplateForPDF";
+      return this.appService.resolve('getTemplateForPDF', this.http
+          .post(routePath,certificateForm, { headers: httpOptions.headers, responseType: "blob" }));
+    }
      clear(): Observable<any> {
       //   //var token = "Bearer " + localStorage.getItem("token");
       //   const httpOptions = {

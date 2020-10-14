@@ -14,34 +14,34 @@
 
 <div class="text-center not-print">
   <mat-form-field class="form-field">
-    <input matInput placeholder="Filter" aria-label="State" [matAutocomplete]="auto" [formControl]="searchForm"  #txtVal (input)="applyFilter(txtVal.value)">
-    <mat-autocomplete #auto="matAutocomplete"  >
+    <input matInput placeholder="Filter" aria-label="State" [matAutocomplete]="auto" [formControl]="searchForm" #txtVal
+      (input)="applyFilter(txtVal.value)">
+    <mat-autocomplete #auto="matAutocomplete">
       <!-- <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
       <ng-container *ngIf="!isLoading"> -->
-        <mat-option *ngFor="let element of filteredForms" [value]="element.fileNo"
-          (click)="getCertificateForm(element)" >
-          <span class="text-default">File No.: {{ element.fileNo }}</span> |
-          <span class="text-danger">MBL Number: {{ element.mblNumber }} </span> |
-          <span class="text-info">Certificate No.: {{ element.certificateNo }}</span> 
-        </mat-option>
+      <mat-option *ngFor="let element of filteredForms" [value]="element.fileNo" (click)="getCertificateForm(element)">
+        <span class="text-default">File No.: {{ element.fileNo }}</span> |
+        <span class="text-danger">MBL Number: {{ element.mblNumber }} </span> |
+        <span class="text-info">Certificate No.: {{ element.certificateNo }}</span>
+      </mat-option>
       <!-- </ng-container> -->
     </mat-autocomplete>
   </mat-form-field>
   <br>
-<ng-container *ngIf="errorMsg">
-  {{errorMsg}}
-</ng-container>
+  <ng-container *ngIf="errorMsg">
+    {{errorMsg}}
+  </ng-container>
 </div>
 <app-form [data]="data">
 </app-form>
 <div class="not-print example-button-row">
-    <button mat-raised-button color="primary">
-        <mat-icon>email</mat-icon>שלח במייל
-    </button>
-    <button  mat-raised-button color="primary" (click)="print()">
-        <mat-icon>print</mat-icon>הדפס
-    </button>
-    <button mat-raised-button color="primary" class="save-button" (click)="save(true)" [disabled]="showProgress">
-        <mat-icon>save</mat-icon>שמור
-    </button>
+  <button mat-raised-button color="primary">
+    <mat-icon>email</mat-icon>שלח במייל
+  </button>
+  <button mat-raised-button color="primary" (click)="print()" [disabled]="disabledPrint">
+    <mat-icon>print</mat-icon>הדפס
+  </button>
+  <button mat-raised-button color="primary" class="save-button" (click)="save()" [disabled]="disabledSave">
+    <mat-icon>save</mat-icon>שמור
+  </button>
 </div>

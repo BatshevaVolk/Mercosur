@@ -19,7 +19,7 @@ export class FormComponent implements OnInit {
 
   }
   public save() {
-    if(this.data.fileNo ===''){
+    if(this.data.fileNo ===undefined||this.data.fileNo ===null||this.data.fileNo.trim() ===''){
       return undefined;
     }
     let headerData = this.header.save()

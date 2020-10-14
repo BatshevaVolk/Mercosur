@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormService } from 'src/app/services/form.service';
 import { FormControl } from '@angular/forms';
 
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas';
 
 import { MatAutocomplete, MatSnackBar } from '@angular/material';
 import { FormComponent } from '../form/form.component';
@@ -16,14 +18,15 @@ export class MainComponent implements OnInit {
   constructor(private formService: FormService, private _snackBar: MatSnackBar) { }
   @ViewChild(MatAutocomplete, { static: false }) matAutocomplete
   @ViewChild(FormComponent, { static: false }) form
-
+  @ViewChild('content', { 'static': true }) content: ElementRef;
   data: any = {};
   searchForm = new FormControl();
   filteredForms: any;
   availableCertificateForm: any[] = []
   currentdata
   //isLoading = false;
-  showProgress = false;
+  disabledSave = false;
+  disabledPrint = false;
   errorMsg: string;
 
   searchAvailableCertificateForm() {
@@ -101,52 +104,101 @@ export class MainComponent implements OnInit {
       };
     }
   }
-  print() {
-    this.save(false);
-    window.print();
-  }
+
+
   // displayFn(element) {
   //   // I want to get the full object and display the name
   //   if (element == undefined) return '';
   //   return `File No.: ${element.fileNo} | MBL Number: ${element.mblNumber}`;
   // }
-  save(displayPopUp) {
+  print() {
     let transferCallback = (): void => {
       this.formService.clear().subscribe(result => {
-      this.data =result
-    });
-  }
-    this.showProgress = true;
+        this.data = result
+      });
+    }
+    this.disabledPrint = true;
+    let saveStatus = "";
     let certificateForm = this.form.save();
     if (certificateForm != undefined) {
-      this.formService.saveCertificateForm(certificateForm).subscribe(result => {
-        this.showProgress = false;
-          if (result > 0) {
-            this.data.id = result;
-            this.searchAvailableCertificateForm();
-          }  
-          let saveStatus="";
-          if (displayPopUp) {
-            if (result > 0){
-            saveStatus=" הנתונים נשמרו בהצלחה"
-            }
-            else{
-              saveStatus=" שגיאה,נא נסה שנית"
-            }
+      this.formService.getTemplateForPDF(certificateForm).subscribe(data => {
+        this.disabledPrint = false;
+
+        if (data != null) {
+          this.searchAvailableCertificateForm();
+          const blob: Blob = new Blob([data], { type: data.type });
+          const objectUrl: string = URL.createObjectURL(blob);
+          window.open(objectUrl);
+          transferCallback();
         }
+        else {
+          saveStatus = " שגיאה,נא נסה שנית"
+          this._snackBar.openFromComponent(ConfirmSnackBarComponent, {
+            data: `? ${saveStatus} האם לנקות את הטופס`,
+
+          }).onAction().subscribe(() => {
+            transferCallback();
+          });
+        }
+
+      }, (error) => {
+        this.disabledPrint = false;
+        saveStatus = " שגיאה,נא נסה שנית"
         this._snackBar.openFromComponent(ConfirmSnackBarComponent, {
-          data:`? ${saveStatus} האם לנקות את הטופס` ,
-    
+          data: `? ${saveStatus} האם לנקות את הטופס`,
+
         }).onAction().subscribe(() => {
           transferCallback();
         });
       });
     }
     else {
-      this.showProgress = false;
-
+      this.disabledPrint = false;
     }
   }
+
+  save() {
+    let transferCallback = (): void => {
+      this.formService.clear().subscribe(result => {
+        this.data = result
+      });
+    }
+    this.disabledSave = true;
+    let certificateForm = this.form.save();
+    if (certificateForm != undefined) {
+      this.formService.saveCertificateForm(certificateForm).subscribe(result => {
+        this.disabledSave = false;
+
+        let saveStatus = "";
+        if (result > 0) {
+          this.data.id = result;
+          this.searchAvailableCertificateForm();
+          saveStatus = " הנתונים נשמרו בהצלחה"
+        }
+        else {
+          saveStatus = " שגיאה,נא נסה שנית"
+        }
+        this._snackBar.openFromComponent(ConfirmSnackBarComponent, {
+          data: `? ${saveStatus} האם לנקות את הטופס`,
+
+        }).onAction().subscribe(() => {
+          transferCallback();
+        });
+      }, (error) => {
+        this.disabledSave = false;
+      });
+    }
+    else {
+      this.disabledSave = false;
+    }
+  }
+
+
+
+
+
+
+
   getCertificateForm(searchForm) {
     this.formService.getCertificateForm(searchForm).subscribe(data => {
       this.data = data;
