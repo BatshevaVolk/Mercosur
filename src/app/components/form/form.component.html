@@ -2,19 +2,9 @@
    <div class="header"> <h4 class="printMe text-center">CERTIFICATE OF ORIGIN - ISRAEL- MERCOSUR FTA</h4>
     <app-form-headers [data]="data.header">
     </app-form-headers></div>
-<table style="margin: auto">
-    <thead><tr><td>
-      <div class="header-space"></div>
-    </td></tr></thead>
-    <tbody><tr><td>
-      <div class="content">
-        <app-form-details [data]="data.descriptionOfGoods"></app-form-details>
-      </div>
-    </td></tr></tbody>
-    <tfoot><tr><td>
-      <div class="footer-space"></div>
-    </td></tr></tfoot>
-  </table>
+    <div class="content">
+      <app-form-details [data]="data.descriptionOfGoods"></app-form-details>
+    </div>
   <div class="footer"> <app-form-footer  [data]="data.footer">
 </app-form-footer></div>
 </mat-card>

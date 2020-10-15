@@ -168,13 +168,7 @@ clear(){
       this.disabledSave = false;
     }
   }
-
-
-
-
-
-
-
+  
   getCertificateForm(searchForm) {
     this.formService.getCertificateForm(searchForm).subscribe(data => {
       this.data = data;
