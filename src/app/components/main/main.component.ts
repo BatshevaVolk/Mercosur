@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocomplete, MatSnackBar } from '@angular/material';
 import { FormComponent } from '../form/form.component';
 import { ConfirmSnackBarComponent } from '../confirm-snack-bar/confirm-snack-bar.component';
+import { AddEmaillSnackBarComponent } from '../add-emaill-snack-bar/add-emaill-snack-bar.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -18,7 +19,7 @@ export class MainComponent implements OnInit {
   @ViewChild('txtVal', { 'static': true }) txtVal: ElementRef;
 
   data: any = {};
-  searchForm = new FormControl();
+  searchFileNo = new FormControl();
   filteredForms: any;
   availableCertificateForm: any[] = []
   currentdata
@@ -26,9 +27,10 @@ export class MainComponent implements OnInit {
   disabledSave = false;
   disabledPrint = false;
   errorMsg: string;
+  disabledSendMail = false;
 
-  searchAvailableCertificateForm() {
-    this.searchForm = new FormControl();
+  searchAvailableCertificateForm(clearData) {
+    this.searchFileNo = new FormControl();
     this.currentdata = undefined;
     this.filteredForms = undefined;
     this.formService.searchAvailableCertificateForm().subscribe(data => {
@@ -38,11 +40,14 @@ export class MainComponent implements OnInit {
       } else {
         this.errorMsg = "";
         this.availableCertificateForm = data;
+        if (clearData == false) {
+          this.searchFileNo.setValue(this.data.fileNo)
+        }
       }
     });
   }
   ngOnInit() {
-    this.searchAvailableCertificateForm();
+    this.searchAvailableCertificateForm(true);
   }
 
   applyFilter(value) {
@@ -84,32 +89,32 @@ export class MainComponent implements OnInit {
   //   return `File No.: ${element.fileNo} | MBL Number: ${element.mblNumber}`;
   // }
 
-showPopUp(saveStatus){
-   let  clearData = false;
- let actionCallback = (): void => {
-  
-    this.clear();
+  showPopUp(saveStatus) {
+    let clearData = false;
+    //
+    let actionCallback = (): void => {
+      this.clear();
     }
+    //
     let popup = this._snackBar.openFromComponent(ConfirmSnackBarComponent, {
       data: `? ${saveStatus} האם לנקות את הטופס`,
-
     })
     popup.onAction().subscribe(() => {
       clearData = true;
       actionCallback();
     });
     popup.afterDismissed().subscribe(() => {
-      if (clearData == false) {
-        this.txtVal.nativeElement.value = this.data.fileNo
-      }
+      this.searchAvailableCertificateForm(clearData);
+    
     });
-}
+  }
 
-clear(){
+  clear() {
     this.formService.clear().subscribe(result => {
-        this.data = result
-      });
-}
+      this.data = result;
+      this.txtVal.nativeElement.value = "";
+    });
+  }
 
   print() {
     this.disabledPrint = true;
@@ -118,9 +123,8 @@ clear(){
     if (certificateForm != undefined) {
       this.formService.getTemplateForPDF(certificateForm).subscribe(data => {
         this.disabledPrint = false;
-
         if (data != null) {
-          this.searchAvailableCertificateForm();
+          this.searchAvailableCertificateForm(true);
           const blob: Blob = new Blob([data], { type: data.type });
           const objectUrl: string = URL.createObjectURL(blob);
           window.open(objectUrl);
@@ -142,8 +146,44 @@ clear(){
     }
   }
 
+  sendMail() {
+    let certificateForm = this.form.save();
+    if (certificateForm != undefined) {
+      let addEmailAddressPopUp = this._snackBar.openFromComponent(AddEmaillSnackBarComponent, {
+        data: `הוסף כתובות`,
+      });
+      addEmailAddressPopUp.onAction().subscribe(() => {
+        this.disabledSendMail = true;
+        let saveStatus = "";
+        if (addEmailAddressPopUp.instance.addressList != undefined && addEmailAddressPopUp.instance.addressList.length > 0) {
+          this.formService.sendMailWithCertificateForm(certificateForm, addEmailAddressPopUp.instance.addressList).subscribe(result => {
+            this.disabledSendMail = false;
+            if (result > 0) {
+              this.data.id = result;
+              saveStatus = " הנתונים נשמרו בהצלחה"
+            }
+            else {
+              saveStatus = " שגיאה,נא נסה שנית"
+            }
+            this.showPopUp(saveStatus);
+          }, (error) => {
+            this.disabledSendMail = false;
+            saveStatus = " שגיאה,נא נסה שנית"
+            this.showPopUp(saveStatus);
+          });
+        }
+        else {
+          this.disabledSendMail = false;
+        }
+      });
+      addEmailAddressPopUp.afterDismissed().subscribe(() => {
+        this.disabledSendMail = false;
+      });
+    }
+  }
+
   save() {
-   let saveStatus = "";
+    let saveStatus = "";
     this.disabledSave = true;
     let certificateForm = this.form.save();
     if (certificateForm != undefined) {
@@ -151,13 +191,13 @@ clear(){
         this.disabledSave = false;
         if (result > 0) {
           this.data.id = result;
-          this.searchAvailableCertificateForm();
+          //this.searchAvailableCertificateForm();
           saveStatus = " הנתונים נשמרו בהצלחה"
         }
         else {
           saveStatus = " שגיאה,נא נסה שנית"
         }
-       this.showPopUp(saveStatus);
+        this.showPopUp(saveStatus);
       }, (error) => {
         this.disabledSave = false;
         saveStatus = " שגיאה,נא נסה שנית"
@@ -168,9 +208,9 @@ clear(){
       this.disabledSave = false;
     }
   }
-  
-  getCertificateForm(searchForm) {
-    this.formService.getCertificateForm(searchForm).subscribe(data => {
+
+  getCertificateForm(searchElement) {
+    this.formService.getCertificateForm(searchElement).subscribe(data => {
       this.data = data;
     });
   }

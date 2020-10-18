@@ -1,0 +1,21 @@
+<div id="header">
+  {{data}}
+</div>
+<div>
+  <form [formGroup]="addressListForm">
+    <ng-container formGroupName ="list">
+    <div *ngFor="let c of addressListForm.controls['list'].controls|keyvalue; index as i">
+    
+      <button type="button" class="addAddress" mat-raised-button color="primary" (click)="addAddress()">
+        <mat-icon> person_add</mat-icon>
+      </button>
+      <input type="text" id="email" name="email" formControlName ="{{'email'+i}}" >
+    </div>
+  </ng-container>
+  </form>
+</div>
+
+<div>
+  <button mat-raised-button color="accent" (click)="snackBarRef.dismiss()">ביטול</button>
+  <button class="ml-2" mat-raised-button color="accent" (click)="send()">שלח</button>
+</div>

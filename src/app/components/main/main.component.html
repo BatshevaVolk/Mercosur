@@ -14,7 +14,7 @@
 
 <div class="text-center not-print">
   <mat-form-field class="form-field">
-    <input matInput placeholder="Filter" aria-label="State" [matAutocomplete]="auto" [formControl]="searchForm" #txtVal
+    <input matInput placeholder="Filter" aria-label="State" [matAutocomplete]="auto" [formControl]="searchFileNo" #txtVal
       (input)="applyFilter(txtVal.value)">
     <mat-autocomplete #auto="matAutocomplete">
       <!-- <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
@@ -35,7 +35,7 @@
 <app-form [data]="data">
 </app-form>
 <div class="not-print example-button-row">
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" (click)="sendMail()" [disabled]="disabledSendMail">
     <mat-icon>email</mat-icon>שלח במייל
   </button>
   <button mat-raised-button color="primary" (click)="print()" [disabled]="disabledPrint">

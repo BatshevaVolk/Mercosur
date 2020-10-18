@@ -6,6 +6,7 @@ import { HotTableModule } from '@handsontable/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConfirmSnackBarComponent } from './components/confirm-snack-bar/confirm-snack-bar.component';
+import { AddEmaillSnackBarComponent } from './components/add-emaill-snack-bar/add-emaill-snack-bar.component';
 import { FormComponent } from './components/form/form.component';
 import { MainComponent } from './components/main/main.component';
 import { FormDetailsComponent } from './components/form-details/form-details.component';
@@ -55,7 +56,8 @@ import {
     FormDetailsComponent,
     FormHeadersComponent,
     FormFooterComponent,
-    ConfirmSnackBarComponent
+    ConfirmSnackBarComponent,
+    AddEmaillSnackBarComponent
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
@@ -102,7 +104,8 @@ import {
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    ConfirmSnackBarComponent
+    ConfirmSnackBarComponent,
+    AddEmaillSnackBarComponent
   ],
 })
 export class AppModule { }
