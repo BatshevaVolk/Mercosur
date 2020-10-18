@@ -23,6 +23,7 @@
         <span class="text-default">File No.: {{ element.fileNo }}</span> |
         <span class="text-danger">MBL Number: {{ element.mblNumber }} </span> |
         <span class="text-info">Certificate No.: {{ element.certificateNo }}</span>
+        <span class="text-black"  *ngIf="element.id!=null&&element.id!=0"> | קיים טופס</span>
       </mat-option>
       <!-- </ng-container> -->
     </mat-autocomplete>
