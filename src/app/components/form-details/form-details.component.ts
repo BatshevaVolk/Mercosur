@@ -1,17 +1,31 @@
 
-import { Component, Input, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { Component, Input, ViewChild, } from '@angular/core';
 import { getMatFormFieldMissingControlError } from '@angular/material';
 import Handsontable from 'handsontable';
-const t: object = new Object();
+
 @Component({
   selector: 'app-form-details',
   templateUrl: './form-details.component.html',
   styleUrls: ['./form-details.component.scss']
 })
-export class FormDetailsComponent implements AfterViewInit {
+export class FormDetailsComponent {
 
   @ViewChild("handsontable", { static: false }) handsontable;
-  @Input() data
+  _data;
+  @Input() set data(value) {
+    this._data = value;
+    if (value != undefined) {
+      // value.isProducer = value.isProducer === true ? "producer" : "exporter";
+      // this.modifiedDate = (value.modifiedDate=="0001-01-01T00:00:00")?"":value.modifiedDate;
+      // this.footerForm.patchValue(value);
+    }
+  }
+  get data(): any {
+    if (this._data != undefined) {
+      return this._data;
+    }
+    return {};
+  }
   customContextMenu = {
     items: this.getItems()
   }
@@ -78,28 +92,5 @@ export class FormDetailsComponent implements AfterViewInit {
       });
     };
     return descriptionOfGoods;
-  }
-  ngAfterViewInit() {
-    this.handsontable.hotInstance.addHook('beforePaste', this.beforePaste);
-
-  }
-  //  afterChange(e: any) {
-  //   // tslint:disable-next-line:no-console
-  //   console.log(e);
-  // }
-
-  //  afterOnCellMouseDown(e: any) {
-  //   // tslint:disable-next-line:no-console
-  //   console.log(e);
-  // }
-
-  beforePaste(data, coords) {
-    let core = Object(this);
-    core.alter("insert_row", coords[0].startRow, data.length);
-    coords = coords;
-    // data -> [[1, 2, 3], [4, 5, 6]]
-    //data.splice(0, 1);
-    // data -> [[4, 5, 6]]
-    // coords -> [{startRow: 0, startCol: 0, endRow: 1, endCol: 2}]
   }
 }
