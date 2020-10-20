@@ -10,8 +10,7 @@ licenseKey="non-commercial-and-evaluation"
 ['Tariff item number', 'Origin criteria',{label: 'Description of the goods', colspan: 2}, 'Gross, weight or other measure']]"
  
 [columnSorting]= "true"
-[contextMenu]= "[
-  'row_above', 'row_below', 'remove_row','copy','cut']"
+[contextMenu]= "customContextMenu"
   [columns]= "[
     {data: 'tariffItemNumber'},
     {data: 'originCriteria'},
@@ -20,6 +19,6 @@ licenseKey="non-commercial-and-evaluation"
     {data: 'measure'}
   ]"
   [height]="207"
-   [colWidths]="[300,200,400,400,300]"
+   [colWidths]="[150,150,345,690,200]"
   ></hot-table>
 </div>

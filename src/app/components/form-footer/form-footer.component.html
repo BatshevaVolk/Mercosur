@@ -17,25 +17,26 @@
       The undersigned hereby declares that he has read the instructions for filling out this Certificate, and that the
       goods comply with the origin requirements specified in the Agreement.
     </p>
-    <div><label>Date:</label></div>
-    <div class="text-center"><label>Stamp and signature</label></div>
-    <hr>
+    <div><label>Date:</label><span class="modifiedDate">{{modifiedDate| date:'short'}}</span></div>
+      <mat-form-field class="signature">
+      <input matInput type="text" class="form-control-sm" formControlName="stampAndSignature" placeholder="Stamp and signature" />
+    </mat-form-field>
   </div>
   <div class="col-md-6 section">
     <div style="height: 95px;">
       <div><label>11.Certification by the Issuing Authority:</label></div>
-      <div class="md-form form-group my-0">
-        <input mdbInput type="text" class="form-control-sm" formControlName="certificationAuthority" />
-        <label for="certificationAuthority">Name of the issuing authority</label>
-      </div>
+      <mat-form-field class="certificationAuthority">
+        <input matInput type="text" class="form-control-sm" formControlName="certificationAuthority" placeholder="Name of the issuing authority" />
+      </mat-form-field>
     </div>
     <p>
       We hereby certify the authenticity of this certificate and that it was issued in accordance with the provisions of
       the Agreement.
     </p>
-    <div><label>Date:</label></div>
-    <div class="text-center"><label>Stamp and signature</label></div>
-    <hr>
+    <div><label>Date:</label><span class="modifiedDate"></span></div>
+    <mat-form-field class="signature">
+      <input matInput type="text" class="form-control-sm" placeholder="Stamp and signature" disabled/>
+    </mat-form-field>
   </div>
  
 </form>

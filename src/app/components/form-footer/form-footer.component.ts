@@ -9,11 +9,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class FormFooterComponent implements OnInit {
   footerForm;
   _data: any;
-
+modifiedDate='';
   @Input() set data(value) {
     this._data = value;
     if (value != undefined) {
       value.isProducer = value.isProducer === true ? "producer" : "exporter";
+      this.modifiedDate = (value.modifiedDate=="0001-01-01T00:00:00")?"":value.modifiedDate;
       this.footerForm.patchValue(value);
     }
   }
@@ -28,7 +29,8 @@ export class FormFooterComponent implements OnInit {
   ngOnInit() {
     this.footerForm = new FormGroup({
       certificationAuthority: new FormControl("", Validators.required),
-      isProducer: new FormControl("", Validators.required),
+      isProducer: new FormControl("producer", Validators.required),
+      stampAndSignature:new FormControl("", Validators.required),
     });
   }
   save() {
