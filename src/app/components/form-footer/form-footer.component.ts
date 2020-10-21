@@ -37,7 +37,8 @@ modifiedDate='';
   //  if (this.footerForm.valid) {
       return {
         certificationAuthority: this.footerForm.value.certificationAuthority,
-        isProducer: this.footerForm.value.isProducer === "producer" ? true : false
+        isProducer: this.footerForm.value.isProducer === "producer" ? true : false,
+        stampAndSignature:this.footerForm.value.stampAndSignature
       }
    // }
    // return undefined;
