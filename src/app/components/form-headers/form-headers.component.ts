@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-headers',
@@ -36,6 +36,7 @@ export class FormHeadersComponent implements OnInit {
   ngOnInit() {
     //let headers = [];
     this.headersForm = new FormGroup({
+      dueDateValidator:new FormControl("", Validators.required),
       exporter: new FormGroup({
         a: new FormControl("", /*Validators.required*/),
         b: new FormControl("", /*Validators.required*/),

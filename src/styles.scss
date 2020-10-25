@@ -3,9 +3,3 @@
 html, body { height: 90%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
-@media print {
-    app-root > * { display: none; }
-   app-root app-main { display: block; }
-   .not-print {visibility: hidden !important;}
-}
