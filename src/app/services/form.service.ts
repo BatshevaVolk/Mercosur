@@ -22,9 +22,11 @@ export class FormService {
     // //       //Authorization: token,
     //     }),
     // };
-    return this.appService.resolve('getCertificateForm', this.http.post<any>(this.url + "/form/certificateForm", searchForm));
+    return this.appService.resolve('getCertificateForm', this.http.post<any>(this.url + "form/certificateForm", searchForm,this.appService.getHttpOptions()));
   }
-
+  getTemplateForPDF(certificateForm): any {
+    return this.appService.resolve('getTemplateForPDF', this.http.post(this.url + "form/getTemplateForPDF", certificateForm,{ headers: this.appService.getHttpOptions().headers, responseType: "blob" } ));
+  }
   saveCertificateForm(certificateForm): Observable<any> {
     //   //var token = "Bearer " + localStorage.getItem("token");
     //   const httpOptions = {
@@ -33,7 +35,7 @@ export class FormService {
     // //       //Authorization: token,
     //     }),
     // };
-    return this.appService.resolve('saveCertificateForm', this.http.post<any>(this.url + "/form/saveCertificateForm", certificateForm));
+    return this.appService.resolve('saveCertificateForm', this.http.post<any>(this.url + "form/saveCertificateForm", certificateForm,this.appService.getHttpOptions()));
   }
 
   sendMailWithCertificateForm(certificateForm, addressList): Observable<any> {
@@ -44,26 +46,13 @@ export class FormService {
     // //       //Authorization: token,
     //     }),
     // };
-    return this.appService.resolve('sendMailWithCertificateForm', this.http.post<any>(this.url + "/form/sendMailWithCertificateForm",
+    return this.appService.resolve('sendMailWithCertificateForm', this.http.post<any>(this.url + "form/sendMailWithCertificateForm",
       {
         "certificateForm": certificateForm,
         "addressList": addressList
-      }
+      },this.appService.getHttpOptions()
     ));
-  }
-
-
-
-  getTemplateForPDF(certificateForm): any {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        responseType: "blob",
-      }),
-    };
-    var routePath = this.url + "/form/getTemplateForPDF";
-    return this.appService.resolve('getTemplateForPDF', this.http
-      .post(routePath, certificateForm, { headers: httpOptions.headers, responseType: "blob" }));
-  }
+    }
   clear(): Observable<any> {
     //   //var token = "Bearer " + localStorage.getItem("token");
     //   const httpOptions = {
@@ -72,7 +61,7 @@ export class FormService {
     // //       //Authorization: token,
     //     }),
     // };
-    return this.appService.resolve('clear', this.http.get<any>(this.url + "/form/clear"));
+    return this.appService.resolve('clear', this.http.get<any>(this.url + "form/clear",this.appService.getHttpOptions()));
   }
   searchAvailableCertificateForm(): Observable<any> {
     //   //var token = "Bearer " + localStorage.getItem("token");
@@ -82,6 +71,6 @@ export class FormService {
     // //       //Authorization: token,
     //     }),
     // };
-    return this.appService.resolve('searchAvailableCertificateForm', this.http.get<any>(this.url + "/form/searchAvailableCertificateForm"));
+    return this.appService.resolve('searchAvailableCertificateForm', this.http.get<any>(this.url + "form/searchAvailableCertificateForm",this.appService.getHttpOptions()));
   }
 }

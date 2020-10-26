@@ -36,7 +36,6 @@ export class FormHeadersComponent implements OnInit {
   ngOnInit() {
     //let headers = [];
     this.headersForm = new FormGroup({
-      dueDateValidator:new FormControl("", Validators.required),
       exporter: new FormGroup({
         a: new FormControl("", /*Validators.required*/),
         b: new FormControl("", /*Validators.required*/),

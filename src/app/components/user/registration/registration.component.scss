@@ -1,0 +1,89 @@
+.background {
+  display: flex;
+  position: relative;
+  background-image: url("../../../../assets/pics/bg7.jpg");
+  background-position: top center;
+  background-size: cover;
+  min-height: 100vh;
+}
+.mat-toolbar{
+  direction: rtl;
+}
+.container{
+  max-width: 100% !important;
+}
+
+.forgotPasswordRegister {
+  text-align: center;
+  margin: -12px 0 15px 0;
+  float: left;
+  width: 100%;
+}
+
+.register span {
+  padding-top: 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.register .redirect{
+  color: #3c89ef;
+  
+  cursor: pointer;
+  display: inline-block; 
+}
+.layer {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.btn-register {
+  background-color: #80b72b;
+}
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+  text-align: right;
+}
+.redirect {
+  cursor: pointer;
+}
+mat-card {
+  height: 85%;
+  width: 500px;
+  min-height: 510px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+.submit {
+  width: 100%;
+  background-color: #80b72b;
+}
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 792px) {
+  mat-card {
+    width: 94%;
+  }
+}

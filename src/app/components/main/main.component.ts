@@ -5,6 +5,8 @@ import { MatAutocomplete, MatSnackBar } from '@angular/material';
 import { FormComponent } from '../form/form.component';
 import { ConfirmSnackBarComponent } from '../confirm-snack-bar/confirm-snack-bar.component';
 import { AddEmaillSnackBarComponent } from '../add-emaill-snack-bar/add-emaill-snack-bar.component';
+import { AppService } from 'src/app/services/app.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -12,7 +14,7 @@ import { AddEmaillSnackBarComponent } from '../add-emaill-snack-bar/add-emaill-s
 })
 export class MainComponent implements OnInit {
 
-  constructor(private formService: FormService, private _snackBar: MatSnackBar) { }
+  constructor(private formService: FormService, private _snackBar: MatSnackBar,private appService:AppService,private authService:AuthService) { }
   @ViewChild(MatAutocomplete, { static: false }) matAutocomplete
   @ViewChild(FormComponent, { static: false }) form
   @ViewChild('content', { 'static': true }) content: ElementRef;
@@ -28,7 +30,9 @@ export class MainComponent implements OnInit {
   disabledPrint = false;
   errorMsg: string;
   disabledSendMail = false;
-
+  onLogout(){
+    this.authService.LogOut();  
+  }
   searchAvailableCertificateForm(clearData) {
     this.searchFileNo = new FormControl();
     this.currentdata = undefined;

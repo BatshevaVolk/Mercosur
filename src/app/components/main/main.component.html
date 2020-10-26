@@ -1,16 +1,30 @@
-<!-- <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-    </button>
-</mat-toolbar> -->
+<mat-toolbar>
+  <ul>
+    <li class="nav-item dropdown mr-0 username d-inline" dropdown>
+      <a
+        dropdownToggle
+        type="button"
+        class="nav-link dropdown-toggle waves-light"
+        mdbWavesEffect
+      ><mat-icon>person</mat-icon>
+        הי,
+       {{ appService.user.fullName }}
+       </a>
+      <div
+        *dropdownMenu
+        class="dropdown-menu dropdown dropdown-primary text-right"
+        role="menu"
+      >
+        <a
+          class="dropdown-item waves-light"
+          (click)="onLogout()"
+          mdbWavesEffect
+          >התנתקות<mat-icon>login</mat-icon></a
+        >
+      </div>
+    </li>
+  </ul>
+</mat-toolbar>
 
 <div class="text-center not-print">
   <mat-form-field class="form-field">

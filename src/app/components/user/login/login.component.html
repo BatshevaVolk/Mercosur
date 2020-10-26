@@ -1,0 +1,69 @@
+<div class="background container">
+  <div class="layer">
+    <mat-card>
+      <div
+        layout="column"
+        layout-align="center center"
+        layout-fill="layout-fill"
+      >
+        <div layout="column" class="loginBox md-whiteframe-z1">
+          <mat-toolbar>
+            <h2 class="md-toolbar-tools text-center"><span>כניסה</span></h2>
+          </mat-toolbar>
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <mat-form-field>
+              <input
+                matInput
+                #Email="ngModel"
+                name="Email"
+                [(ngModel)]="formModel.Email"
+                placeholder="אימייל"
+                required
+              />
+              <mat-error *ngIf="Email.invalid && Email.touched"
+                >שדה חובה*</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                type="password"
+                class="form-control"
+                #Password="ngModel"
+                name="Password"
+                [(ngModel)]="formModel.Password"
+                placeholder="סיסמה"
+                required
+              />
+              <mat-error *ngIf="Password.invalid && Password.touched"
+                >שדה חובה*</mat-error
+              >
+            </mat-form-field>
+            <button
+              mat-raised-button
+              type="submit"
+              class="btn btn-lg btn-block btn-login"
+              [disabled]="form.invalid"
+            >
+              כניסה
+            </button>
+          </form>
+
+          <div class="forgotPasswordRegister forgotPassword">
+            <span routerLink="/forgot-password">?שכחת סיסמא</span>
+          </div>
+          <div class="register forgotPasswordRegister">
+           <span class="redirect" routerLink="/register-user">הירשם כאן</span> <span> ?אין לך חשבון</span>
+          </div>
+        </div>
+      </div>
+      <div class="container text-center">
+        <img
+          src="../../../../assets/pics/logo1.png"
+          alt="Fritz LTD"
+          class="w-75 h-auto mt-4"
+        />
+      </div>
+    </mat-card>
+  </div>
+</div>

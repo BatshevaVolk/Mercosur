@@ -1,5 +1,140 @@
-/* You can add global styles to this file, and also import other style files */
 
 html, body { height: 90%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+// /* You can add global styles to this file, and also import other style files */
+// @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+// @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+// @import url("//fonts.googleapis.com/icon?family=Material+Icons");
+
+// body,
+// html {
+//   direction: rtl;
+//   text-align: right;
+//   margin: 0;
+//   padding: 0;
+//   font-weight: 400;
+//   width: 100%;
+//   height: 90%;
+//   font-family: "Poppins", sans-serif;
+//   background-color: #e7e8e8;
+//   nav.navbar {
+//     background-color: #fff;
+//   }
+//   .container {
+//     max-width: unset;
+//   }
+//   .mat-dialog-container {
+//     padding: 0;
+//     height: 770px;
+//   }
+//   .mat-form-field {
+//     text-align: inherit !important;
+//   }
+//   mat-paginator {
+//     direction: ltr !important;
+//   }
+// }
+// .mat-chip-list-wrapper .mat-standard-chip,
+// .mat-chip-list-wrapper input.mat-input-element {
+//   margin: 2px !important;
+// }
+
+// * {
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+//   box-shadow: none !important;
+// }
+// .mat-badge-medium .mat-badge-content {
+//   width: 16px;
+//   height: 16px;
+//   line-height: 16px;
+// }
+// .forgotPassword {
+//   text-align: center;
+//   margin: -12px 0 15px 0;
+//   float: left;
+//   width: 100%;
+// }
+// .mat-expansion-panel-header-description {
+//   direction: ltr;
+//   margin-left: 10px;
+// }
+// .mat-expansion-panel-header {
+//   direction: rtl !important;
+// }
+// .forgotPassword span {
+//   color: #3c89ef;
+//   font-size: 14px;
+//   font-weight: 400;
+//   cursor: pointer;
+//   display: inline-block;
+//   padding-top: 20px;
+// }
+
+// .register span {
+//     color: #3c89ef;
+//     font-size: 14px;
+//     font-weight: 400;
+//     cursor: pointer;
+//     display: inline-block;
+//     padding-top: 5px;
+//   }
+
+// .card {
+//   border: none;
+// }
+// .img-fluid {
+//   height: 150px !important;
+// }
+// .list-group-item {
+//   padding: 0 1.25rem 15px;
+//   border: none;
+// }
+// h4,
+// .h4 {
+//   font-size: 1.2rem;
+// }
+// input:-internal-autofill-selected {
+//   background-color: transparent !important;
+// }
+// .md-form label {
+//   right: 0;
+//   left: unset;
+// }
+// .envelope {
+//   .light-green-text {
+//     font-size: 1.5rem !important;
+//   }
+// }
+// .fa-sign-out-alt {
+//   position: relative;
+//   top: 1px;
+// }
+// .navbar-toggler {
+//   background-color: #80b72b;
+// }
+// .mat-form-field {
+//   min-width: unset !important;
+// }
+// .mat-checkbox-inner-container {
+//   margin-left: 8px !important;
+// }
+// .mat-cell,
+// .mat-footer-cell {
+//   font-size: 12px;
+// }
+// td.mat-cell,
+// th.mat-header-cell {
+//   padding: 6px !important;
+//   line-height: 38px;
+// }
+// .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+//   right: -6px !important;
+//   top: -7px !important;
+// }
+// .mat-raised-button {
+//   min-width: 50px !important;
+//   line-height: 25px !important;
+// }

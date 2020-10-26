@@ -1,0 +1,105 @@
+<div class="background container">
+  <div class="layer">
+    <mat-card>
+      <div
+        layout="column"
+        layout-align="center center"
+        layout-fill="layout-fill"
+      >
+        <div layout="column" class="loginBox md-whiteframe-z1">
+          <mat-toolbar>
+            <h2 class="md-toolbar-tools text-center"><span>הרשמה</span></h2>
+          </mat-toolbar>
+          <form
+            #userRegistrationForm="ngForm"
+            (ngSubmit)="OnSubmit(userRegistrationForm)"
+          >
+            <mat-form-field>
+              <input
+                matInput
+                #fullName="ngModel"
+                name="fullName"
+                [(ngModel)]="user.fullName"
+                placeholder="שם מלא"
+                required
+              />
+              <mat-error *ngIf="fullName.invalid && fullName.touched"
+                >שדה חובה*</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                #mobilePhone="ngModel"
+                name="mobilePhone"
+                [(ngModel)]="user.mobilePhone"
+                placeholder="טלפון"
+              />
+              <mat-error *ngIf="mobilePhone.invalid && mobilePhone.touched"
+                >שדה חובה*</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                #email="ngModel"
+                name="email"
+                [(ngModel)]="user.email"
+                placeholder="אימייל"
+                required
+               type="email"  email
+              />
+              <mat-error *ngIf="email.invalid && email.touched"
+                >שדה חובה, אימייל לא תקין*</mat-error 
+              >
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                type="password"
+                class="form-control"
+                #password="ngModel"
+                name="password"
+                [(ngModel)]="user.password"
+                placeholder="סיסמה"
+                required
+                pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}"
+              />
+              <mat-error *ngIf="password.invalid && password.touched"
+                >שדה חובה, סיסמה חיבת להיות באורך 8 תוים ולהכיל ספרות,תוים ואותיות קטנות וגדולות</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                type="password"
+                class="form-control"
+                #confirmPassword="ngModel"
+                name="confirmPassword"
+                [(ngModel)]="user.confirmPassword"
+                placeholder="וידוא סיסמה"
+                required
+                pattern="{{ password.value }}"
+              />
+              <mat-error
+                *ngIf="confirmPassword.invalid && confirmPassword.touched"
+                >סיסמא חייבת להיות זהה</mat-error
+              >
+            </mat-form-field>
+            <button
+              mat-raised-button
+              type="submit"
+              class="btn btn-lg btn-block btn-register"
+              [disabled]="userRegistrationForm.invalid"
+            >
+              הרשמה
+            </button>
+          </form>
+          <div class="register forgotPasswordRegister">
+            <span class="redirect" routerLink="/login">היכנס כאן</span> <span> ?יש לך חשבון</span>
+           </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
