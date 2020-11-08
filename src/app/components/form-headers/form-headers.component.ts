@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-form-headers',
@@ -13,12 +14,7 @@ export class FormHeadersComponent implements OnInit {
   @Input() set data(value) {
     this._data = value;
     if (value != undefined) {
-      //debugger;
-      //this.headersForm.controls["portAndTransportDetails"]=new FormArray(value.portAndTransportDetails);
       this.headersForm.patchValue(value);
-      // this.headersForm.controls["portAndTransportDetails"]=this.formbulider.array(value.portAndTransportDetails);
-      //this.headersForm.controls["exporter"].setValue(this.toString(value.exporter));
-      // this.headersForm.controls["importer"].setValue(this.toString(value.importer));
     }
   }
   get data(): any {
@@ -27,14 +23,9 @@ export class FormHeadersComponent implements OnInit {
     }
     return {};
   }
-  constructor() { }
-  // toString(orgDetails) {
-  //   let newLine = "\n";
-  //   return `${orgDetails.name}${newLine}${orgDetails.address}${newLine}${orgDetails.country}`
-  // }
+  constructor(private _snackBar:MatSnackBar) { }
 
   ngOnInit() {
-    //let headers = [];
     this.headersForm = new FormGroup({
       exporter: new FormGroup({
         a: new FormControl("", /*Validators.required*/),
@@ -89,8 +80,12 @@ export class FormHeadersComponent implements OnInit {
         observations: this.headersForm.value.observations,
         commercialInvoices: this.headersForm.value.commercialInvoices,
       }
-
     }
+    else{
+      this._snackBar.open("למסמך B/L יש למלא", "שגיאה", {
+        duration: 2000,
+      });
     return undefined;
+    }
   }
 }

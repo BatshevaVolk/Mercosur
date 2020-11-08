@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserLoginI } from './Models/user-login.model';
 import { AppService } from './services/app.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,11 @@ export class AppComponent implements OnInit{
     this.appService.user = new UserLoginI();
   }
   constructor(
-    private appService: AppService
+    public appService:AppService,
+    private authService:AuthService
   ) { }
+  onLogout(){
+    this.authService.LogOut();  
+  }
 }
 

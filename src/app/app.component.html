@@ -1,1 +1,28 @@
+<mat-toolbar>
+    <ul>
+      <li class="nav-item dropdown mr-0 username d-inline" dropdown>
+        <a
+          dropdownToggle
+          type="button"
+          class="nav-link dropdown-toggle waves-light"
+          mdbWavesEffect
+        ><mat-icon>person</mat-icon>
+          הי,
+         {{ appService.user.fullName }}
+         </a>
+        <div
+          *dropdownMenu
+          class="dropdown-menu dropdown dropdown-primary text-right"
+          role="menu"
+        >
+          <a
+            class="dropdown-item waves-light"
+            (click)="onLogout()"
+            mdbWavesEffect
+            >התנתקות<mat-icon>login</mat-icon></a
+          >
+        </div>
+      </li>
+    </ul>
+  </mat-toolbar>
 <router-outlet></router-outlet>
