@@ -20,6 +20,7 @@ import { FormFooterComponent } from './components/form-footer/form-footer.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { HttpClientModule } from "@angular/common/http";
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -112,7 +113,7 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
     HotTableModule,
     HttpClientModule 
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmSnackBarComponent,

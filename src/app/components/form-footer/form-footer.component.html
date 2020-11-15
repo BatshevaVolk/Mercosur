@@ -17,7 +17,14 @@
       The undersigned hereby declares that he has read the instructions for filling out this Certificate, and that the
       goods comply with the origin requirements specified in the Agreement.
     </p>
-    <div><label>Date:</label><span class="modifiedDate">{{modifiedDate| date:'d/M/yyyy'}}</span></div>
+    <div><label>Date:</label>
+      <mat-form-field >
+        <input matInput formControlName="modifiedDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <!-- <span class="modifiedDate">{{modifiedDate| date:'d/M/yyyy'}}</span> -->
+    </div>
       <mat-form-field class="signature">
       <input matInput type="text" class="form-control-sm" formControlName="stampAndSignature" placeholder="Stamp and signature" />
     </mat-form-field>
@@ -33,7 +40,14 @@
       We hereby certify the authenticity of this certificate and that it was issued in accordance with the provisions of
       the Agreement.
     </p>
-    <div><label>Date:</label><span class="modifiedDate"></span></div>
+    <div><label>Date:</label>
+      <!-- <span class="modifiedDate"></span> -->
+      <mat-form-field >
+        <input matInput  [matDatepicker]="picker2" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
     <mat-form-field class="signature">
       <input matInput type="text" class="form-control-sm" placeholder="Stamp and signature" disabled/>
     </mat-form-field>
