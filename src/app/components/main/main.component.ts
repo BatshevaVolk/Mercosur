@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
   disabledPrint = false;
   errorMsg: string;
   disabledSendMail = false;
-  
+
   searchAvailableCertificateForm(clearData) {
     this.searchFileNo = new FormControl();
     this.currentdata = undefined;
@@ -105,7 +105,7 @@ export class MainComponent implements OnInit {
     });
     popup.afterDismissed().subscribe(() => {
       this.searchAvailableCertificateForm(clearData);
-    
+
     });
   }
 
@@ -131,14 +131,20 @@ export class MainComponent implements OnInit {
           this.clear();
         }
         else {
-          saveStatus = " שגיאה,נא נסה שנית"
-          this.showPopUp(saveStatus);
+          this.searchAvailableCertificateForm(true);
+          this.clear();
+        this._snackBar.open("שגיאת מערכת", "נא נסה שנית", {
+          duration: 2000,
+        }); 
         }
 
       }, (error) => {
+        this.searchAvailableCertificateForm(true);
+        this.clear();
+        this._snackBar.open("שגיאת מערכת", "נא נסה שנית", {
+          duration: 2000,
+        }); 
         this.disabledPrint = false;
-        saveStatus = " שגיאה,נא נסה שנית"
-        this.showPopUp(saveStatus);
       });
     }
     else {
@@ -161,15 +167,23 @@ export class MainComponent implements OnInit {
             if (result > 0) {
               this.data.id = result;
               saveStatus = " הנתונים נשמרו בהצלחה"
+              this.showPopUp(saveStatus);
             }
             else {
-              saveStatus = " שגיאה,נא נסה שנית"
+              this.searchAvailableCertificateForm(true);
+              this.clear();
+              this._snackBar.open("שגיאת מערכת", "נא נסה שנית", {
+                duration: 2000,
+              });
             }
-            this.showPopUp(saveStatus);
+
           }, (error) => {
+            this.searchAvailableCertificateForm(true);
             this.disabledSendMail = false;
-            saveStatus = " שגיאה,נא נסה שנית"
-            this.showPopUp(saveStatus);
+            this.clear();
+            this._snackBar.open("שגיאת מערכת", "נא נסה שנית", {
+              duration: 2000,
+            });
           });
         }
         else {
@@ -193,15 +207,23 @@ export class MainComponent implements OnInit {
           this.data.id = result;
           //this.searchAvailableCertificateForm();
           saveStatus = " הנתונים נשמרו בהצלחה"
+          this.showPopUp(saveStatus);
         }
         else {
-          saveStatus = " שגיאה,נא נסה שנית"
+          this.searchAvailableCertificateForm(true);
+          this.clear();
+          this._snackBar.open("שגיאת מערכת", "נא נסה שנית", {
+            duration: 2000,
+          });
         }
-        this.showPopUp(saveStatus);
+
       }, (error) => {
         this.disabledSave = false;
-        saveStatus = " שגיאה,נא נסה שנית"
-        this.showPopUp(saveStatus);
+        this.searchAvailableCertificateForm(true);
+        this.clear();
+        this._snackBar.open("שגיאת מערכת", "נא נסה שנית", {
+          duration: 2000,
+        });
       });
     }
     else {
