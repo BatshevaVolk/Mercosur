@@ -12,6 +12,7 @@ export class FormDetailsComponent {
 
   @ViewChild("handsontable", { static: false }) handsontable;
   _data;
+  lastChange;
   @Input() set data(value) {
     this._data = value;
     if (value != undefined) {
@@ -20,12 +21,57 @@ export class FormDetailsComponent {
       // this.footerForm.patchValue(value);
     }
   }
+
+  // afterChange(changes){
+  //   console.log("ff");
+  //   //debugger;
+  // }
   get data(): any {
     if (this._data != undefined) {
       return this._data;
     }
     return {};
   }
+  validator(value, callback):any {
+    if((this as any).prop=="tariffItemNumber"){
+    if (value.length > 10) {
+        (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 10), null);
+    }
+    callback(true)
+  }
+  if((this as any).prop=="originCriteria"){
+    if (value.length > 1) {
+        (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 1), null);
+    }
+    callback(true)
+    
+  }
+  if((this as any).prop=="description.a"){
+    if (value.length > 13) {
+        (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 13), null);
+    }
+    callback(true)
+  }
+  if((this as any).prop=="description.b"){
+    if (value.length > 30) {
+        (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 30), null);
+    }
+    callback(true)
+  }
+  if((this as any).prop=="measure"){
+    if (value.length > 15) {
+        (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 15), null);
+    }
+    callback(true)
+  }
+    
+}
+  // beforeChange(changes, source){
+  //  console.log(changes) ;
+  // }
+  // beforeKeyDown(e) {
+  // console.log("f");
+  // }
   customContextMenu = {
     items: this.getItems()
   }
@@ -54,7 +100,7 @@ export class FormDetailsComponent {
   paste(coreObject, options, isShiftPaste) {
     const pasteOptions = options;
     const core = coreObject;
-    (navigator as any).permissions.query({ name: "clipboard-read"}).then(result => {
+    (navigator as any).permissions.query({ name: "clipboard-read" }).then(result => {
       // If permission to read the clipboard is granted or if the user will
       // be prompted to allow it, we proceed.
       console.log("state");

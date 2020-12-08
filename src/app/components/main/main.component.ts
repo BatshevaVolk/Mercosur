@@ -127,8 +127,9 @@ export class MainComponent implements OnInit {
           this.searchAvailableCertificateForm(true);
           const blob: Blob = new Blob([data], { type: data.type });
           const objectUrl: string = URL.createObjectURL(blob);
-          window.open(objectUrl);
           this.clear();
+          window.open(objectUrl);
+          
         }
         else {
           this.searchAvailableCertificateForm(true);

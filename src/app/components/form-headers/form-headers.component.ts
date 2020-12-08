@@ -24,7 +24,77 @@ export class FormHeadersComponent implements OnInit {
     return {};
   }
   constructor(private _snackBar:MatSnackBar) { }
+  limitLinesAndCols(e: any) {
+  const newLine = /\r*\n/g;
+  const value = e.target.value;
+  const newLines = (value.match(newLine) || []).length;
 
+  const lines = value.split(newLine);
+
+  //enter
+  if (e.keyCode === 13 && lines.length >= e.target.rows) {
+    e.preventDefault();
+    return;
+  }
+
+  const lineNo = value.substr(0, e.target.selectionStart).split(newLine).length - 1;
+
+  //backspace
+  if (e.keyCode === 8 && ~value.charAt(e.target.selectionStart - 1).search(newLine)) {
+    if (lines[lineNo].length + lines[lineNo - 1].length <= e.target.cols) return;
+
+    e.preventDefault();
+    return;
+  }
+
+  //del
+  if (e.keyCode === 46 && ~value.charAt(e.target.selectionStart).search(newLine)) {
+    if (lines[lineNo].length + lines[lineNo + 1].length <= e.target.cols) return;
+
+    e.preventDefault();
+    return;
+  }
+
+  if (e.key.length > 1) return;
+
+  if (value.length < e.target.cols) return;
+
+  if (lines[lineNo].length > e.target.cols - 1) {
+    if (lines.length < e.target.rows) {
+      const col = (e.target.selectionStart - newLines) / lines.length;
+      let p1 = value.substr(0, e.target.selectionStart);
+      if (col === e.target.cols) {
+        p1 += '\r\n' + String.fromCharCode(e.keyCode);
+      } else {
+        p1 += String.fromCharCode(e.keyCode) + '\r\n';
+      }
+
+      e.target.value = p1 + value.substr(e.target.selectionStart, value.length);
+      e.target.selectionStart = p1.length - 1;
+      e.target.selectionEnd = p1.length - 1;
+    }
+
+    e.preventDefault();
+    return;
+  }
+}
+
+  limitLines(event: any, maxLines: number) {
+    let text = (event.target as HTMLTextAreaElement).value;
+    if (text.length > 0) {
+      const lineCount = 1 + text.replace(/[^\n]/g, '').length;
+      if (lineCount > maxLines) {
+        const textArray = text.split('\n');
+        const newText = textArray.reduce((result, line, lineNum, array) => {
+          if (lineNum < maxLines) {
+            return result.concat('\n').concat(line);
+          }
+          return result.concat(line);
+        });
+        (event.target as HTMLTextAreaElement).value = newText;
+      }
+    }
+  }
   ngOnInit() {
     this.headersForm = new FormGroup({
       exporter: new FormGroup({
