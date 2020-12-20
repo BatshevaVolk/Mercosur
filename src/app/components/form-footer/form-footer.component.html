@@ -26,14 +26,14 @@
       <!-- <span class="modifiedDate">{{modifiedDate| date:'d/M/yyyy'}}</span> -->
     </div>
       <mat-form-field class="signature">
-      <input matInput type="text" class="form-control-sm" formControlName="stampAndSignature" placeholder="Stamp and signature" />
+      <input matInput type="text" class="form-control-sm" [maxLength]="26" formControlName="stampAndSignature" placeholder="Stamp and signature" />
     </mat-form-field>
   </div>
   <div class="col-md-6 section">
     <div style="height: 95px;">
       <div><label>11.Certification by the Issuing Authority:</label></div>
       <mat-form-field class="certificationAuthority">
-        <input matInput type="text" class="form-control-sm" formControlName="certificationAuthority" placeholder="Name of the issuing authority" />
+        <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="certificationAuthority" placeholder="Name of the issuing authority" />
       </mat-form-field>
     </div>
     <p>

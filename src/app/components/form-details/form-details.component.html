@@ -8,17 +8,16 @@ licenseKey="non-commercial-and-evaluation"
 [rowHeaders]= "true"
 [validator]="validator"
 [nestedHeaders]="[
-['Tariff item number', 'Origin criteria',{label: 'Description of the goods', colspan: 2}, 'Gross, weight or other measure']]"
+['Tariff item number', 'Origin criteria','Description of the goods', 'Gross, weight or other measure']]"
 [columnSorting]= "true"
 [contextMenu]= "customContextMenu"
   [columns]= "[
     {data: 'tariffItemNumber'},
     {data: 'originCriteria'},
-    {data: 'description.a'},
-    {data: 'description.b'},
+    {data: 'description'},
     {data: 'measure'}
   ]"
   [height]="207"
-   [colWidths]="[150,150,345,690,200]"
+   [colWidths]="[150,150,1035,200]"
   ></hot-table>
 </div>

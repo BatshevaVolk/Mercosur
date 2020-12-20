@@ -24,6 +24,7 @@ export class FormHeadersComponent implements OnInit {
     return {};
   }
   constructor(private _snackBar:MatSnackBar) { }
+
   limitLinesAndCols(e: any) {
   const newLine = /\r*\n/g;
   const value = e.target.value;
@@ -78,39 +79,24 @@ export class FormHeadersComponent implements OnInit {
     return;
   }
 }
-
-  limitLines(event: any, maxLines: number) {
-    let text = (event.target as HTMLTextAreaElement).value;
-    if (text.length > 0) {
-      const lineCount = 1 + text.replace(/[^\n]/g, '').length;
-      if (lineCount > maxLines) {
-        const textArray = text.split('\n');
-        const newText = textArray.reduce((result, line, lineNum, array) => {
-          if (lineNum < maxLines) {
-            return result.concat('\n').concat(line);
-          }
-          return result.concat(line);
-        });
-        (event.target as HTMLTextAreaElement).value = newText;
-      }
-    }
-  }
   ngOnInit() {
     this.headersForm = new FormGroup({
-      exporter: new FormGroup({
-        a: new FormControl("", /*Validators.required*/),
-        b: new FormControl("", /*Validators.required*/),
-        c: new FormControl("", /*Validators.required*/),
-        d: new FormControl("", /*Validators.required*/),
-        e: new FormControl("", /*Validators.required*/)
-      }),
-      importer: new FormGroup({
-        a: new FormControl("", /*Validators.required*/),
-        b: new FormControl("", /*Validators.required*/),
-        c: new FormControl("", /*Validators.required*/),
-        d: new FormControl("", /*Validators.required*/),
-        e: new FormControl("", /*Validators.required*/)
-      }),
+      exporter: new FormControl("",  /*Validators.required*/),
+      // exporter: new FormGroup({
+      //   a: new FormControl("", /*Validators.required*/),
+      //   b: new FormControl("", /*Validators.required*/),
+      //   c: new FormControl("", /*Validators.required*/),
+      //   d: new FormControl("", /*Validators.required*/),
+      //   e: new FormControl("", /*Validators.required*/)
+      // }),
+      importer: new FormControl("",  /*Validators.required*/),
+      // importer: new FormGroup({
+      //   a: new FormControl("", /*Validators.required*/),
+      //   b: new FormControl("", /*Validators.required*/),
+      //   c: new FormControl("", /*Validators.required*/),
+      //   d: new FormControl("", /*Validators.required*/),
+      //   e: new FormControl("", /*Validators.required*/)
+      // }),
       commercialInvoices: new FormControl("",  /*Validators.required*/),
       observations: new FormControl(""),
       countryOfDestination: new FormControl("",  /*Validators.required*/),
@@ -126,21 +112,24 @@ export class FormHeadersComponent implements OnInit {
     this.headersForm.markAllAsTouched();
     if (this.headersForm.valid) {
       return {
-        exporter: {
-          a: this.headersForm.value.exporter.a.trim(),
-          b: this.headersForm.value.exporter.b.trim(),
-          c: this.headersForm.value.exporter.c.trim(),
-          d: this.headersForm.value.exporter.d.trim(),
-          e: this.headersForm.value.exporter.e.trim()
-        },
+        exporter:this.headersForm.value.exporter.trim(),
+        exporterName:this.data.exporterName.trim(),
+        // exporter: {
+        //   a: this.headersForm.value.exporter.a.trim(),
+        //   b: this.headersForm.value.exporter.b.trim(),
+        //   c: this.headersForm.value.exporter.c.trim(),
+        //   d: this.headersForm.value.exporter.d.trim(),
+        //   e: this.headersForm.value.exporter.e.trim()
+        // },
         certificateNo: this.headersForm.value.certificateNo,
-        importer: {
-          a: this.headersForm.value.importer.a.trim(),
-          b: this.headersForm.value.importer.b.trim(),
-          c: this.headersForm.value.importer.c.trim(),
-          d: this.headersForm.value.importer.d.trim(),
-          e: this.headersForm.value.importer.e.trim()
-        },
+        importer:this.headersForm.value.importer.trim(),
+        // importer: {
+        //   a: this.headersForm.value.importer.a.trim(),
+        //   b: this.headersForm.value.importer.b.trim(), 
+        //   c: this.headersForm.value.importer.c.trim(),
+        //   d: this.headersForm.value.importer.d.trim(),
+        //   e: this.headersForm.value.importer.e.trim()
+        // },
         countryOfOrigin: this.headersForm.value.countryOfOrigin,
         portAndTransportDetails: {
           port: this.headersForm.value.portAndTransportDetails.port,

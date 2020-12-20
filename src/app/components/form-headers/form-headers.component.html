@@ -2,33 +2,38 @@
   <div class="form-row">
     <div class="col-md-6">
       <label>1.Exporter(name,full address, country)</label>
-      <div formGroupName="exporter" class="section">
+      <div class="md-form form-group my-0">
+        <mat-form-field>
+          <textarea matInput type="text" (keydown)="limitLinesAndCols($event)" cols="40" rows=4 class="form-control" [maxLength]="164" formControlName="exporter" ></textarea>
+        </mat-form-field>
+      </div>
+      <!-- <div formGroupName="exporter" class="section"> -->
         <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="a" />
+          <!-- <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="a" /> -->
         <!-- </mat-form-field> -->
         <!-- <mat-error>
           <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
         </mat-error> -->
         <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="b" />
+          <!-- <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="b" /> -->
         <!-- </mat-form-field> -->
         <!-- <mat-error>
           <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
         </mat-error> -->
         <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm"  [maxLength]="40" formControlName="c" />
+          <!-- <input matInput type="text" class="form-control-sm"  [maxLength]="40" formControlName="c" /> -->
         <!-- </mat-form-field> -->
         <!-- <mat-error>
           <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
         </mat-error> -->
         <!-- <mat-form-field> -->
          
-          <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="d" />
+          <!-- <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="d" /> -->
         <!-- </mat-form-field> -->
         <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="e" />
+          <!-- <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="e" /> -->
         <!-- </mat-form-field> -->
-      </div>
+      <!-- </div> -->
     </div>
     <div class="col-md-6">
       <label>2.Certificate no.</label>
@@ -45,32 +50,37 @@
   <div class="form-row">
     <div class="col-md-6">
       <label>3.Importer (name, full address,country)</label>
-      <div formGroupName="importer" class="section">
-        <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="a" />
-        <!-- </mat-form-field> -->
-        <!-- <mat-error>
-          <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
-        </mat-error> -->
-        <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="b" />
-        <!-- </mat-form-field> -->
-        <!-- <mat-error>
-          <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
-        </mat-error> -->
-        <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="c" />
-        <!-- </mat-form-field> -->
-        <!-- <mat-error>
-          <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
-        </mat-error> -->
-        <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="d" />
-        <!-- </mat-form-field> -->
-        <!-- <mat-form-field> -->
-          <input matInput type="text" class="form-control-sm"  [maxLength]="40" formControlName="e" />
-        <!-- </mat-form-field> -->
+      <div class="md-form form-group my-0">
+        <mat-form-field>
+          <textarea matInput type="text" (keydown)="limitLinesAndCols($event)" cols="40" rows=4 class="form-control" [maxLength]="164" formControlName="importer" ></textarea>
+        </mat-form-field>
       </div>
+      <!-- <div formGroupName="importer" class="section"> -->
+        <!-- <mat-form-field> -->
+          <!-- <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="a" /> -->
+        <!-- </mat-form-field> -->
+        <!-- <mat-error>
+          <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
+        </mat-error> -->
+        <!-- <mat-form-field> -->
+          <!-- <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="b" /> -->
+        <!-- </mat-form-field> -->
+        <!-- <mat-error>
+          <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
+        </mat-error> -->
+        <!-- <mat-form-field> -->
+          <!-- <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="c" /> -->
+        <!-- </mat-form-field> -->
+        <!-- <mat-error>
+          <span *ngIf="!headersForm.get('exporter').get('name').value"></span>
+        </mat-error> -->
+        <!-- <mat-form-field> -->
+          <!-- <input matInput type="text" class="form-control-sm" [maxLength]="40" formControlName="d" /> -->
+        <!-- </mat-form-field> -->
+        <!-- <mat-form-field> -->
+          <!-- <input matInput type="text" class="form-control-sm"  [maxLength]="40" formControlName="e" /> -->
+        <!-- </mat-form-field> -->
+      <!-- </div> -->
     </div>
     <div class="col-md-6">
       <label>4.Country of Origin</label>

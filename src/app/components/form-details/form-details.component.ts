@@ -46,15 +46,9 @@ export class FormDetailsComponent {
     callback(true)
     
   }
-  if((this as any).prop=="description.a"){
-    if (value.length > 13) {
-        (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 13), null);
-    }
-    callback(true)
-  }
-  if((this as any).prop=="description.b"){
-    if (value.length > 30) {
-        (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 30), null);
+  if((this as any).prop=="description"){
+    if (value.length > 60) {
+        (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 60), null);
     }
     callback(true)
   }
@@ -136,11 +130,8 @@ export class FormDetailsComponent {
           descriptionOfGoods.push({
             tariffItemNumber: d[0],
             originCriteria: d[1],
-            description: {
-              a: d[2],
-              b: d[3]
-            },
-            measure: d[4]
+            description: d[2],
+            measure: d[3]
           });
         }
       });
