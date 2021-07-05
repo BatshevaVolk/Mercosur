@@ -7,6 +7,7 @@ licenseKey="non-commercial-and-evaluation"
 [colHeaders]= "true"
 [rowHeaders]= "true"
 [validator]="validator"
+[afterValidate]="onAfterValidate"
 [nestedHeaders]="[
 ['Tariff item number', 'Origin criteria','Description of the goods', 'Gross, weight or other measure']]"
 [columnSorting]= "true"
@@ -20,4 +21,5 @@ licenseKey="non-commercial-and-evaluation"
   [height]="207"
    [colWidths]="[150,150,1035,200]"
   ></hot-table>
+  <p *ngIf="show" [ngStyle]="{'color':'red'}"> תאורי רשומות {{rows}} קוצצו </p>
 </div>

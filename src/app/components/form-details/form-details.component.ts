@@ -1,18 +1,23 @@
 
-import { Component, Input, ViewChild, } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewChild, } from '@angular/core';
 import { getMatFormFieldMissingControlError } from '@angular/material';
 import Handsontable from 'handsontable';
+
 
 @Component({
   selector: 'app-form-details',
   templateUrl: './form-details.component.html',
-  styleUrls: ['./form-details.component.scss']
+  styleUrls: ['./form-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormDetailsComponent {
-
+  show: boolean = false;
   @ViewChild("handsontable", { static: false }) handsontable;
   _data;
   lastChange;
+  rows: string = "";
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
   @Input() set data(value) {
     this._data = value;
     if (value != undefined) {
@@ -32,34 +37,37 @@ export class FormDetailsComponent {
     }
     return {};
   }
-  validator(value, callback):any {
-    if((this as any).prop=="tariffItemNumber"){
-    if (value.length > 10) {
+  validator(value, callback): any {
+    if ((this as any).prop == "tariffItemNumber") {
+      if (value.length > 10) {
         (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 10), null);
+      }
+      callback(true)
     }
-    callback(true)
-  }
-  if((this as any).prop=="originCriteria"){
-    if (value.length > 1) {
+    if ((this as any).prop == "originCriteria") {
+      if (value.length > 1) {
         (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 1), null);
+      }
+      callback(true)
+
     }
-    callback(true)
-    
-  }
-  if((this as any).prop=="description"){
-    if (value.length > 60) {
+    if ((this as any).prop == "description") {
+      if (value.length > 60) {
         (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 60), null);
+        this.show = true;
+        // this.cdRef.detectChanges();
+        console.log(this.show)
+      }
+      callback(true)
     }
-    callback(true)
-  }
-  if((this as any).prop=="measure"){
-    if (value.length > 15) {
+    if ((this as any).prop == "measure") {
+      if (value.length > 15) {
         (this as any).instance.setDataAtCell((this as any).row, (this as any).col, value.substring(0, 15), null);
+      }
+      callback(true)
     }
-    callback(true)
+
   }
-    
-}
   // beforeChange(changes, source){
   //  console.log(changes) ;
   // }
@@ -137,5 +145,21 @@ export class FormDetailsComponent {
       });
     };
     return descriptionOfGoods;
+  }
+
+  onAfterValidate = (hotInstance, changes, source) => {
+
+    if (changes.length > 60) {
+      this.show = true;
+      if (this.rows == "")
+        this.rows = (source + 1);
+      else
+        this.rows = this.rows + ", " + (source + 1);
+      this.changeDetectorRef.detectChanges();
+      return true;
+    }
+
+
+    return true;
   }
 }
